@@ -1,0 +1,15 @@
+//
+//  Header.pch
+//  lean
+//
+//  Created by kobe on 16/12/23.
+//  Copyright © 2016年 Gust50. All rights reserved.
+//
+
+#ifndef Header_h
+#define Header_h
+
+#import <AVOSCloud.h>
+#import <Masonry.h>
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#endif /* Header_h */
