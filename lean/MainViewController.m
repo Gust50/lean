@@ -8,9 +8,12 @@
 
 #import "MainViewController.h"
 #import "ViewController.h"
+#import <ChatKit/LCChatKit.h>
 @interface MainViewController ()
 @property(nonatomic,strong)UIButton *logout;
 @property(nonatomic,strong)UIButton *addButton;
+@property(nonatomic,strong)UIButton *chatButton;
+@property(nonatomic,strong)UIButton *singleChat;
 @end
 
 @implementation MainViewController
@@ -66,6 +69,32 @@
         }
     }];
 }
+- (UIButton *)chatButton{
+    if (!_chatButton) {
+        _chatButton = [UIButton new];
+        [_chatButton setTitle:@"联系人聊天界面" forState:UIControlStateNormal];
+        [_chatButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_chatButton addTarget:self action:@selector(chatAC) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+    return _chatButton;
+}
+- (void)chatAC{
+    LCCKConversationListViewController *firstViewController = [[LCCKConversationListViewController alloc] init];
+    [self presentViewController:firstViewController animated:YES completion:nil];
+}
+- (UIButton *)singleChat{
+    if (!_singleChat) {
+        _singleChat = [UIButton new];
+        [_singleChat setTitle:@"单聊界面" forState:UIControlStateNormal];
+        [_singleChat setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_singleChat addTarget:self action:@selector(singleChatAC) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _singleChat;
+}
+- (void)singleChatAC{
+    LCCKConversationViewController *conversationViewController = [[LCCKConversationViewController alloc] initWithPeerId:peerId];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
@@ -74,6 +103,7 @@
 - (void)initUI{
     [self.view addSubview:self.logout];
     [self.view addSubview:self.addButton];
+    [self.view addSubview:self.chatButton];
     [self updateViewConstraints];
 }
 - (void)updateViewConstraints{
@@ -89,6 +119,12 @@
         make.centerX.equalTo(weakSelf.view);
         make.width.equalTo(@80);
         make.top.equalTo(@200);
+        make.height.equalTo(@30);
+    }];
+    [_chatButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.view);
+        make.width.equalTo(@150);
+        make.top.equalTo(_addButton.mas_bottom).offset(30);
         make.height.equalTo(@30);
     }];
 }

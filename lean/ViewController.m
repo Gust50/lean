@@ -10,12 +10,15 @@
 #import "SignupViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "MainViewController.h"
+#import <AVOSCloudSNS.h>
 @interface ViewController ()
 @property(nonatomic,strong)UITextField *inputUsername;
 @property(nonatomic,strong)UITextField *inputPassword;
 @property(nonatomic,strong)UIButton *login;
 @property(nonatomic,strong)UIButton *signup;
 @property(nonatomic,strong)UIButton *forgetPassword;
+@property(nonatomic,strong)UIButton *code;
+@property(nonatomic,strong)UIButton *fastLogin;
 @end
 
 @implementation ViewController
@@ -81,7 +84,47 @@
     }
     return _forgetPassword;
 }
-
+-(UIButton *)code{
+    if (!_code) {
+        _code = [UIButton new];
+        [_code setTitle:@"验证码" forState:UIControlStateNormal];
+        [_code setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_code addTarget:self action:@selector(codeAC) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _code;
+}
+- (void)codeAC{
+    NSLog(@"获取验证码");
+    [AVUser requestLoginSmsCode:self.inputUsername.text withBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"获取验证码成功");
+        }else{
+            NSLog(@"获取验证码错误");
+        }
+    }];
+}
+- (UIButton *)fastLogin{
+    if (!_fastLogin) {
+        _fastLogin = [UIButton new];
+        [_fastLogin setTitle:@"一键登录" forState:UIControlStateNormal];
+        [_fastLogin setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [_fastLogin addTarget:self action:@selector(fastLoginAC) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _fastLogin;
+}
+- (void)fastLoginAC{
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:@"" andAppSecret:@"" andRedirectURI:@""];
+    [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+//            NSString *accessToken = object[@"access_token"];
+//            NSString *username = object[@"username"];
+//            NSString *avatar = object[@"avatar"];
+//            NSDictionary *rawUser = object[@"raw-user"];
+        }
+    }toPlatform:AVOSCloudSNSSinaWeibo];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -93,6 +136,8 @@
     [self.view addSubview:self.login];
     [self.view addSubview:self.signup];
     [self.view addSubview:self.forgetPassword];
+    [self.view addSubview:self.code];
+    [self.view addSubview:self.fastLogin];
     [self updateViewConstraints];
 }
 - (void)updateViewConstraints{
@@ -127,6 +172,18 @@
         make.width.equalTo(@80);
         make.left.equalTo(_login.mas_right).offset(10);
     }];
+    [_code mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_inputPassword.mas_right).offset(5);
+        make.width.equalTo(@60);
+        make.centerY.equalTo(_inputPassword);
+        make.height.equalTo(_inputPassword);
+    }];
+    [_fastLogin mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.view).offset(-80);
+        make.right.equalTo(weakSelf.view).offset(-30);
+        make.height.equalTo(@30);
+        make.width.equalTo(@80);
+    }];
 }
 - (void)loginAC{
     NSString *username = self.inputUsername.text;
@@ -135,14 +192,14 @@
     [defaults setObject:username forKey:@"username"];
     [defaults setObject:password forKey:@"password"];
     if (username && password) {
-        [AVUser logInWithUsernameInBackground:username password:password block:^(AVUser *user, NSError *error) {
+
+        [AVUser logInWithUsernameInBackground:username password:password block:^(AVUser * _Nullable user, NSError * _Nullable error) {
             if (error) {
-                NSLog(@"登录失败 %@", error);
-            } else {
-        
+                NSLog(@"登录失败");
+            }else{
                 NSLog(@"登录成功");
                 MainViewController *mainVC = [MainViewController new];
-                [self presentViewController:mainVC animated:YES completion:nil];
+            [self presentViewController:mainVC animated:YES completion:nil];
             }
         }];
     }

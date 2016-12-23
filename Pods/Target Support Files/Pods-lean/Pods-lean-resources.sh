@@ -81,9 +81,31 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
+  install_resource "ChatKit/ChatKit/Class/Resources/BarButtonIcon.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/ChatKeyboard.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Common.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/DateTools.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Emoji.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/MBProgressHUD.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/MessageBubble.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Placeholder.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/VoiceMessageSource.bundle"
+  install_resource "ChatKit/ChatKit/Class/Module/ContactList/View/LCCKContactCell.xib"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
+  install_resource "ChatKit/ChatKit/Class/Resources/BarButtonIcon.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/ChatKeyboard.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Common.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/DateTools.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Emoji.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/MBProgressHUD.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/MessageBubble.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/Placeholder.bundle"
+  install_resource "ChatKit/ChatKit/Class/Resources/VoiceMessageSource.bundle"
+  install_resource "ChatKit/ChatKit/Class/Module/ContactList/View/LCCKContactCell.xib"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

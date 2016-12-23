@@ -8,16 +8,22 @@
 
 #import "AppDelegate.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudSNS.h>
+#import <ChatKit/LCChatKit.h>
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    return [AVOSCloudSNS handleOpenURL:url];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [AVOSCloud setApplicationId:@"cDeU5sfDeaGbvR5HsKTusxh3-gzGzoHsz" clientKey:@"iiuyIQy5jByXAtj642n9Jgac"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [LCChatKit setAppId:@"cDeU5sfDeaGbvR5HsKTusxh3-gzGzoHsz" appKey:@"iiuyIQy5jByXAtj642n9Jgac"];
+
     return YES;
 }
 

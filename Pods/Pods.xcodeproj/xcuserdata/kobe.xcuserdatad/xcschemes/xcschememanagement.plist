@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AVOSCloud.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,6 +24,31 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChatKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FDStackView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LeanCloudSocial.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,10 +59,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>21CC193C84675DB0B5144C4D7122E8B8</key>
+		<key>0563E5053BE23F617A59FFDD12AEDA64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +82,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
+		<key>295080D018A6787753E6186AA2AC79F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6BBAFF20A52E651841337D0F19AE7973</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D82010D93AF3795F63451183C195564</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75EE1ED3DC340BFB1DAB2DD78ED9DD63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7F41A957D70EC732FEF6850F1A00E4AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83C97F8A84A03762BC9DC22B0F24FABA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +123,16 @@
 			<true/>
 		</dict>
 		<key>A695583FE48EDC0F7FA49C6311A8A8EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B46C770105365382AAEC40BCC8A1613A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA7BDBD88BCD9C754AC463D519DD0AF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

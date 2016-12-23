@@ -14,6 +14,7 @@
 @property(nonatomic,strong)UITextField *inputEmail;
 @property(nonatomic,strong)UIButton *signup;
 @property(nonatomic,strong)UIButton *back;
+@property(nonatomic,strong)UIButton *code;
 @end
 
 @implementation SignupViewController
@@ -68,6 +69,26 @@
     }
     return _back;
 }
+-(UIButton *)code{
+    if (!_code) {
+        _code = [UIButton new];
+        [_code setTitle:@"验证码" forState:UIControlStateNormal];
+        [_code setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_code addTarget:self action:@selector(codeAC) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _code;
+}
+- (void)codeAC{
+    NSLog(@"获取验证码");
+    [AVOSCloud requestSmsCodeWithPhoneNumber:self.inputUsername.text callback:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"获取验证码成功");
+        }else{
+            NSLog(@"获取验证码错误");
+        }
+    }];
+   
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,6 +101,8 @@
     [self.view addSubview:self.inputEmail];
     [self.view addSubview:self.signup];
     [self.view addSubview:self.back];
+    [self.view addSubview:self.code];
+    self.code.hidden = YES;
     [self updateViewConstraints];
 }
 
@@ -116,6 +139,12 @@
         make.width.equalTo(@40);
         make.height.equalTo(@20);
     }];
+    [_code mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_inputPassword.mas_right).offset(5);
+        make.width.equalTo(@60);
+        make.centerY.equalTo(_inputPassword);
+        make.height.equalTo(_inputPassword);
+    }];
 }
 
 - (void)signupAC{
@@ -138,6 +167,23 @@
                 }
             }];
         }
+    
+//    if (userName && password) {
+//        AVUser *user = [AVUser user];
+//        user.username = userName;
+//        user.password = password;
+//        [AVUser signUpOrLoginWithMobilePhoneNumberInBackground:userName smsCode:password block:^(AVUser * _Nullable user, NSError * _Nullable error) {
+//            if (!error) {
+//                NSLog(@"注册成功!!!");
+//                MainViewController *mainVC = [MainViewController new];
+//                [self presentViewController:mainVC animated:YES completion:nil];
+//            }
+//            else{
+//                NSLog(@"注册失败 %@",error);
+//            }
+//        }];
+//    }
+
 }
 - (void)backAC{
     [self dismissViewControllerAnimated:YES completion:nil];
